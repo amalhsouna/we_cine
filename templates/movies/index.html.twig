@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} We movies {% endblock %}
+
+{% block content %}
+    <div class="header-container">
+        <h1 class="page-title"> A propos de We movies </h1>
+        {% include 'movies/search_bar.html.twig' %}
+   </div>
+{# main video #}
+<div class="row col-12 banner position-relative">
+    <div class="banner-video">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ main_video.key }}" allowfullscreen></iframe>
+    </div>
+    <div class="resume row align-items-center position-absolute">
+       <div class="image col-md-2">
+            <img src="https://image.tmdb.org/t/p/w500/{{ first_popular_movie.posterPath }}" class="img-fluid rounded" alt="{{ first_popular_movie.title }}" />
+        </div>
+        <div class="desc col-md-10">
+            <h3 class="title">{{ first_popular_movie.title }}</h3>
+            <p class="description">{{ first_popular_movie.overview }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 genres-container">
+        <h2>Genres</h2>
+        <div class="search_form">
+            <class id="genre-form">
+                <ul>
+                    {% for genre in genres %}
+                        <li>
+                            <input type="checkbox" class="genre-checkbox" value="{{ genre.id }}" id="genre-{{ genre.id }}">
+                            <label for="genre-{{ genre.id }}">{{ genre.name }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div id="movies-list" class="row">
+        </div>
+    </div>
+ </div>
+</div>
+    
+  {# the popup modal #}
+  <div class="modal fade" id="detailModal"  aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('movies') }}
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% if movie is defined %}
+    <div class="detail-modal">
+        <div class="">
+         <iframe class="embed-responsive-item" width="100%" height="315"  src="https://www.youtube.com/embed/{{ video.key }}" allowfullscreen></iframe>
+            <h2 id="modal-title">{{ movie.title }}</h2>
+            <div class="modal-info d-flex align-items-center">
+                <p>Film : {{ movie.title }}<p>
+                <p id="modal-stars">  
+                {% for i in 1..5 %}
+                        {% if i <= (movie.voteAverage / 2)|round %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                 {% endfor %}</p>
+                <p><span id="modal-vote-rate">{{ movie.voteAverage }}</span></p>
+                <p><span id="modal-vote-count">pour {{ movie.voteCount}} utilisateur</span></p>
+            </div>
+            <p id="modal-description">{{ movie.overview }}</p>
+        </div>
+{%endif%}

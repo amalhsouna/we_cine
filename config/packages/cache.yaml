@@ -1,0 +1,6 @@
+framework:
+    cache:
+        pools:
+            movie_cache:
+                adapter: cache.app
+                default_lifetime: 86400 # Durée de vie par défaut de 1 jour (86400 secondes)
